@@ -7,7 +7,7 @@ static uint8_t hue = 0;
 static uint8_t sat = 255;
 static bool rainb = true;
 static unsigned long rainb_t = 0;
-static const long rainb_i = 1000;
+static const long rainb_i = 100;
 
 #include <ESP8266WiFi.h>
 #include "wifi.h"
@@ -32,6 +32,7 @@ void handleHSV() {
   Serial.printf("h=%d s=%d v=%d",hue,sat,bri);
   Serial.println();
   FastLED.showColor(CHSV(hue, sat, bri));
+  rainb = false;
 }
 
 void handleRGB() {
@@ -44,6 +45,7 @@ void handleRGB() {
   Serial.println();
   FastLED.showColor(CRGB(r, g, b));
   FastLED.setBrightness(bri);
+  rainb = false;
 }
 
 void setup() {
